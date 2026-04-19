@@ -57,14 +57,11 @@ with tab_chat:
 
         with st.chat_message("assistant"):
             with st.spinner("Thinking…"):
-                response = chain.invoke({"question": prompt})
-                answer = response["answer"]
+                answer = chain.invoke(
+                    {"question": prompt},
+                    config={"configurable": {"session_id": "default"}},
+                )
             st.markdown(answer)
-
-            with st.expander("Retrieved context"):
-                for doc in response.get("source_documents", []):
-                    st.caption(f"Topic: {doc.metadata.get('topic', 'unknown')}")
-                    st.text(doc.page_content[:400])
 
         st.session_state.messages.append({"role": "assistant", "content": answer})
 
