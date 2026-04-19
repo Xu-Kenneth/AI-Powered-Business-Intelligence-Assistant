@@ -1,7 +1,12 @@
 """InsightForge — AI-Powered Business Intelligence Assistant (Streamlit UI)."""
 
+import os
 import streamlit as st
 import pandas as pd
+
+# Inject Streamlit Cloud secrets into os.environ so downstream code can use os.getenv()
+for _key, _val in st.secrets.items():
+    os.environ.setdefault(str(_key), str(_val))
 
 from src.data_loader import load_data
 from src.rag_system import build_rag_chain

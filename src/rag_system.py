@@ -47,9 +47,12 @@ PROMPT = ChatPromptTemplate.from_messages([
 def build_rag_chain():
     vectorstore = build_knowledge_base()
     retriever = vectorstore.as_retriever(search_kwargs={"k": RETRIEVER_K})
+    api_key = os.getenv("ANTHROPIC_API_KEY")
+    if not api_key:
+        raise ValueError("ANTHROPIC_API_KEY is not set. Add it to Streamlit secrets or your .env file.")
     llm = ChatAnthropic(
         model=LLM_MODEL,
-        anthropic_api_key=os.getenv("ANTHROPIC_API_KEY"),
+        anthropic_api_key=api_key,
         temperature=0.1,
     )
 

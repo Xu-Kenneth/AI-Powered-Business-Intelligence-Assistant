@@ -42,9 +42,10 @@ Does the AI answer correctly address the question using specific data? Reply wit
 
 
 def run_evaluation(rag_chain) -> List[Dict]:
+    api_key = os.getenv("ANTHROPIC_API_KEY")
     judge = ChatAnthropic(
         model="claude-sonnet-4-6",
-        anthropic_api_key=os.getenv("ANTHROPIC_API_KEY"),
+        anthropic_api_key=api_key,
         temperature=0,
     )
 
