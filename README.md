@@ -1,4 +1,4 @@
-# InsightForge — AI-Powered Business Intelligence Assistant
+# AI-Powered Business Intelligence Assistant
 
 A Retrieval-Augmented Generation (RAG) BI assistant that lets you have a natural-language conversation with your sales data, backed by FAISS vector search, LangChain, and Anthropic Claude.
 
